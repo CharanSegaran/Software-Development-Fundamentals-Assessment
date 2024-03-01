@@ -31,7 +31,7 @@ public class FileService {
                 stacks.add(line);
             }
         }catch(Exception e){
-            e.printStackTrace();
+            System.out.println("File does not exist, creating a new file");
         }
         stacks.add(pokemons);
         try(BufferedWriter bw  = new BufferedWriter(new FileWriter(filepath))){

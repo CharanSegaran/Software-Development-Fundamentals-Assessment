@@ -40,7 +40,7 @@ public class ClientApp {
                     temp.add(pokeStack);
                     stacks.put(stack, temp);
                     stack++;
-                    System.out.println(stacks);
+                   
                     input = cons.readLine("Press any key to continue").toUpperCase();
                         break;
                     
