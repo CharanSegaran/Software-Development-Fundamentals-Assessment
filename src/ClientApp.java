@@ -107,10 +107,10 @@ public class ClientApp {
     }
 
     public static void printNext5StarsPokemon(String pokemon){
-        int con = 0; //three criterias as int to check if need to print a statement below in the for loop
+        int con = 0; 
 
         List<String> temp = new ArrayList<>(); 
-        temp = FileService.readCSV(filename);  //read the CSVfile based on main arg[0] with each stack as a String element in a List
+        temp = FileService.readCSV(filename);  
 
         for (int i=0; i<temp.size(); i++){
             
