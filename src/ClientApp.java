@@ -1,7 +1,10 @@
 import java.io.Console;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ClientApp {
+    Map<Integer, List<String>> stack = new HashMap<>();
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to Pokemon Gaole Legend 4 Rush 2");
         System.out.println("(1) View unique list of Pokemon in the selected task");
@@ -14,12 +17,22 @@ public class ClientApp {
         while(!input.equals("q")){
             Console cons = System.console();
             input = cons.readLine("Enter your selection >");
-            if(input.equals("3")){
+            switch (input) {
+                case "3":
                 System.out.println("Create a new Pokemon stack and save to a new file >");
-                String[] pokeStack = cons.readLine().split(",");
+                String pokeStack = cons.readLine();
                 System.out.println("Enter filename to save (e.g path/filename.csv) >");
                 input = cons.readLine();
                 FileService.WriteAsCSV(input, pokeStack);
+                    break;
+                
+                case "1":
+
+                    break;
+                default:
+                System.out.println("You did not enter a number between 1 and 4 or q");
+                    break;
+
             }
 
         }
