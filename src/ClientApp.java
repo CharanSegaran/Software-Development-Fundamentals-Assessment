@@ -53,7 +53,7 @@ public class ClientApp {
                         int selection = Integer.parseInt(cons.readLine());
                         List<String> pokeStacks = FileService.readCSV(filename); 
                         try{
-                        String[] pokemons = pokeStacks.get(selection-1).split(","); //pull out the stack and
+                        String[] pokemons = pokeStacks.get(selection).split(","); //pull out the stack and
                                                                                                  //and store to a string array
                         
                         Map<String, Integer> unique = new HashMap<>();
