@@ -25,15 +25,11 @@ public class FileService {
     }
 
     public static void WriteAsCSV(String filepath, String pokemons){
-        File repository = new File(filepath);
         stacks.add(pokemons);
 
         try(BufferedWriter br  = new BufferedWriter(new FileWriter(filepath))){
             for(String stack:stacks){
-                String[] temps = stack.trim().split(",");
-                for (String pokemon:temps){
-                    br.write(pokemon);
-                }
+                br.write(stack);
                 br.newLine();
             }
             
