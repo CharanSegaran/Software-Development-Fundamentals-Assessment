@@ -47,8 +47,9 @@ public class ClientApp {
                     case "1":
                         System.out.println("Display the list of unique Pokemon in stack (1-8) >");
                         int selection = Integer.parseInt(cons.readLine());
+                        try{
                         String[] pokemons = stacks.get(selection).get(0).split(",");
-
+                        
                         Map<String, Integer> unique = new HashMap<>();
                         int counter = 1;
                         for (String pokemon:pokemons){
@@ -63,16 +64,23 @@ public class ClientApp {
                                                     sorted(Map.Entry.comparingByValue()).
                         collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
                         sortedMap.forEach((k,v) -> System.out.printf("%d ==> %s\n", v,k));
+                        }catch(Exception e){
+                            System.out.println("Error, not a value from 1-8");
+                            input = cons.readLine("Press any key to continue").toUpperCase();
+
+                        }
                         break;
 
                     case "2":
                         System.out.println("Search for the next occurence of 5 stars Pokemon in all stacks based on entered Pokemon >");
                         input = cons.readLine();
                         printNext5StarsPokemon(input);
+                        input = cons.readLine("Press any key to continue").toUpperCase();
                         break;
 
                     case "4":
                         printPokemonCardCount();
+                        input = cons.readLine("Press any key to continue").toUpperCase();
                         break;
 
                     case "q":
@@ -81,6 +89,7 @@ public class ClientApp {
 
                     default:
                     System.out.println("You did not enter a number between 1 and 4 or q");
+                    input = cons.readLine("Press any key to continue").toUpperCase();
                         break;
 
                 }
@@ -93,7 +102,8 @@ public class ClientApp {
 
     public static void printNext5StarsPokemon(String pokemon){
         int con = 0;
-   
+        int crit1 = 0;
+        int crit2 = 0;
         List<String> temp = new ArrayList<>();
         temp = FileService.readCSV(filename);
 
@@ -110,17 +120,19 @@ public class ClientApp {
                     
                     for (String s1:temp2){
 
-                        if(s1.substring(0,2).equals("5*")){
+                        if(s1.substring(0,2).equals("5*") && crit1!=1){
                             System.out.printf("%s>>>%d cards to go.\n", s1, Arrays.asList(temp2).indexOf(s1));
                             con = 1;
+                            crit1 = 1;
                             break;
                         }
-                        else if(Arrays.asList(temp2).indexOf(s1) == temp2.length-1) {
+                        else if(Arrays.asList(temp2).indexOf(s1) == temp2.length-1 && crit2!=1) {
                             System.out.println("No 5 stars Pokemon found subsequently in the stack");
                             con = 1;
+                            crit2 = 1;
                             break;
                         }
-  
+                    
                     }
                 }
             }if(con == 0){
