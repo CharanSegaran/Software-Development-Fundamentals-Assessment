@@ -30,7 +30,7 @@ public class FileService {
 
         try(BufferedWriter br  = new BufferedWriter(new FileWriter(filepath))){
             for(String stack:stacks){
-                String[] temps = stack.split(",");
+                String[] temps = stack.trim().split(",");
                 for (String pokemon:temps){
                     br.write(pokemon);
                 }
